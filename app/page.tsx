@@ -2,11 +2,12 @@
 
 import { useEffect, useRef } from "react"
 import FibonacciSphere from "@/components/fibonacci-sphere"
-import Header from "@/components/header"
+import Hero from "@/components/Hero"
 import About from "@/components/about"
 import Skills from "@/components/skills"
 import Projects from "@/components/projects"
 import Contact from "@/components/contact"
+import ScrollIndicator from "@/components/ScrollIndicator"
 
 export default function Home() {
   const mainRef = useRef<HTMLDivElement>(null)
@@ -31,9 +32,8 @@ export default function Home() {
         <FibonacciSphere />
       </div>
       
-      <Header />
-      <section className="hero">
-      </section>
+      <ScrollIndicator />
+      <Hero />
       <About />
       <Projects />
       <Skills />

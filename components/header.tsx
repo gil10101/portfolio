@@ -1,9 +1,10 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { motion } from "framer-motion"
+import KineticTypography from "./KineticTypography"
 
 export default function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -17,29 +18,26 @@ export default function Header() {
 
   return (
     <header className={`header ${scrolled ? 'scrolled' : ''}`}>
-      <div className="logo">
-        <span className={`greeting font-semibold text-lg ${scrolled ? 'text-gray-100' : 'text-gray-900'}`}>Hey, I'm John</span>
-      </div>
-      <div className="mobile-menu-icon" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-        <div className={`hamburger ${mobileMenuOpen ? 'open' : ''}`}>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-      <nav className={mobileMenuOpen ? 'nav-open' : ''}>
-        <ul>
-          <li>
-            <a href="#about" onClick={() => setMobileMenuOpen(false)} className={scrolled ? 'text-gray-100' : 'text-gray-900'}>About</a>
-          </li>
-          <li>
-            <a href="#projects" onClick={() => setMobileMenuOpen(false)} className={scrolled ? 'text-gray-100' : 'text-gray-900'}>Projects</a>
-          </li>
-          <li>
-            <a href="#contact" onClick={() => setMobileMenuOpen(false)} className={scrolled ? 'text-gray-100' : 'text-gray-900'}>Contact</a>
-          </li>
-        </ul>
-      </nav>
+      <motion.div 
+        className="logo"
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <KineticTypography textStyle="wave">
+          <span className={`greeting font-semibold text-lg ${scrolled ? 'text-gray-100' : 'text-gray-900'}`}>
+            John Doe
+          </span>
+        </KineticTypography>
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 0.7, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="subtitle"
+        >
+          DEVELOPER / DATA ANALYST
+        </motion.div>
+      </motion.div>
     </header>
   )
 }

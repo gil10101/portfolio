@@ -2,10 +2,11 @@ import type React from "react"
 import type { Metadata } from "next"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import Layout from "@/components/Layout"
 
 export const metadata: Metadata = {
-  title: "Portfolio",
-  description: "Portfolio",
+  title: "Portfolio - John Doe",
+  description: "Professional portfolio of John Doe, Full Stack Developer & Data Analyst",
   icons: {
     icon: "/logo.png",
   },
@@ -26,7 +27,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <Layout>{children}</Layout>
         </ThemeProvider>
       </body>
     </html>
