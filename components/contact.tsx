@@ -51,15 +51,29 @@ export default function Contact() {
           <div className="section-title-line"></div>
         </div>
         
-        <div className="contact-info">
-          <p>
-            I'm always open to new opportunities and growing through new experiences. 
-            Feel free to reach out if you'd like to connect, collaborate, or 
-            just want to say hello!
-          </p>
-          <p>
-            You can contact me directly at <strong>email@email.com</strong> or through this form.
-          </p>
+        <div style={{ display: 'flex', gap: '2rem', marginBottom: '3rem' }}>
+          <div className="contact-info" style={{ flex: '1' }}>
+            <p>
+              I'm always open to new opportunities and growing through new experiences. 
+              Feel free to reach out if you'd like to connect, collaborate, or 
+              just want to say hello!
+            </p>
+            <p>
+              You can contact me directly at <strong>email@email.com</strong> or through this form.
+            </p>
+          </div>
+          
+          <div className="social-links" style={{ display: 'flex', flexDirection: 'column', gap: '15px', justifyContent: 'center' }}>
+            <a href="https://linkedin.com/in/profile" target="_blank" rel="noopener noreferrer">
+              LinkedIn
+            </a>
+            <a href="mailto:email@email.com">
+              email@email.com
+            </a>
+            <a href="https://github.com/gil10101" target="_blank" rel="noopener noreferrer">
+              GitHub
+            </a>
+          </div>
         </div>
         
         <div className="contact-form">
@@ -74,7 +88,7 @@ export default function Contact() {
                 onChange={handleChange}
                 required
                 placeholder="Your name"
-                style={{ width: '100%' }}
+                style={{ width: '100%', minWidth: '500px' }}
               />
             </div>
             
@@ -88,7 +102,7 @@ export default function Contact() {
                 onChange={handleChange}
                 required
                 placeholder="Your email address"
-                style={{ width: '100%' }}
+                style={{ width: '100%', minWidth: '500px' }}
               />
             </div>
             
@@ -102,7 +116,7 @@ export default function Contact() {
                 onChange={handleChange}
                 required
                 placeholder="Your message"
-                style={{ width: '100%' }}
+                style={{ width: '100%', minWidth: '500px' }}
               ></textarea>
             </div>
             
@@ -118,18 +132,6 @@ export default function Contact() {
               Thank you for your message! I'll get back to you soon.
             </div>
           </form>
-        </div>
-        
-        <div className="social-links">
-          <a href="https://linkedin.com/in/profile" target="_blank" rel="noopener noreferrer">
-            LinkedIn
-          </a>
-          <a href="mailto:email@email.com">
-            email@email.com
-          </a>
-          <a href="https://github.com/gil10101" target="_blank" rel="noopener noreferrer">
-            GitHub
-          </a>
         </div>
       </div>
     </section>

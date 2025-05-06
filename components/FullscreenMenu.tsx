@@ -3,6 +3,7 @@
 import React from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import KineticTypography from './KineticTypography'
+import { useProjects } from './ProjectsContext'
 
 interface FullscreenMenuProps {
   isOpen: boolean
@@ -10,6 +11,8 @@ interface FullscreenMenuProps {
 }
 
 export default function FullscreenMenu({ isOpen, onClose }: FullscreenMenuProps) {
+  const { toggleExpand } = useProjects()
+  
   const menuVariants = {
     hidden: {
       opacity: 0,
@@ -95,13 +98,13 @@ export default function FullscreenMenu({ isOpen, onClose }: FullscreenMenuProps)
             </motion.a>
             
             <motion.a 
-              href="#projects"
+              href="#skills"
               className="menu-item"
               variants={itemVariants}
               onClick={() => onClose()}
             >
               <span className="japanese-numeral">(三)</span>
-              <span className="menu-text">PROJECTS</span>
+              <span className="menu-text">SKILLS</span>
             </motion.a>
             
             <motion.a 
@@ -113,6 +116,20 @@ export default function FullscreenMenu({ isOpen, onClose }: FullscreenMenuProps)
               <span className="japanese-numeral">(四)</span>
               <span className="menu-text">CONTACT</span>
             </motion.a>
+
+            <div style={{ marginTop: "2rem" }}></div>
+            
+            <motion.div 
+              className="menu-item"
+              variants={itemVariants}
+              onClick={() => {
+                toggleExpand()
+                onClose()
+              }}
+            >
+              <span className="japanese-numeral">十</span>
+              <span className="menu-text">PROJECTS</span>
+            </motion.div>
           </motion.div>
         </motion.div>
       )}

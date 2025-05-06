@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import Layout from "@/components/Layout"
+import { ProjectsProvider } from "@/components/ProjectsContext"
 
 export const metadata: Metadata = {
   title: "Portfolio - John Doe",
@@ -27,7 +28,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Layout>{children}</Layout>
+          <ProjectsProvider>
+            <Layout>{children}</Layout>
+          </ProjectsProvider>
         </ThemeProvider>
       </body>
     </html>

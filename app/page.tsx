@@ -35,8 +35,8 @@ export default function Home() {
       <ScrollIndicator />
       <Hero />
       <About />
-      <Projects />
       <Skills />
+      <Projects />
       <Contact />
     </div>
   )

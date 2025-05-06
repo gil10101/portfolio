@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Header from './header'
 import MenuToggle from './MenuToggle'
 import FullscreenMenu from './FullscreenMenu'
+import { useProjects } from './ProjectsContext'
 
 interface LayoutProps {
   children: React.ReactNode
@@ -12,6 +13,7 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   const [menuOpen, setMenuOpen] = useState(false)
+  const { toggleExpand } = useProjects()
   
   return (
     <div className="site-container">
@@ -41,14 +43,23 @@ export default function Layout({ children }: LayoutProps) {
               <span className="japanese-char">(二)</span>
               <span className="sidebar-text">ABOUT</span>
             </a>
-            <a href="#projects" className="sidebar-item">
+            <a href="#skills" className="sidebar-item">
               <span className="japanese-char">(三)</span>
-              <span className="sidebar-text">PROJECTS</span>
+              <span className="sidebar-text">SKILLS</span>
             </a>
             <a href="#contact" className="sidebar-item">
               <span className="japanese-char">(四)</span>
               <span className="sidebar-text">CONTACT</span>
             </a>
+            <div style={{ marginTop: "2rem" }}></div>
+            <div 
+              className="sidebar-item"
+              onClick={toggleExpand}
+              style={{ cursor: 'pointer' }}
+            >
+              <span className="japanese-char">十</span>
+              <span className="sidebar-text">PROJECTS</span>
+            </div>
           </div>
         </div>
       </div>

@@ -1,61 +1,80 @@
 "use client"
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import AnimatedText from './AnimatedText';
 import KineticTypography from './KineticTypography';
+import { useProjects } from './ProjectsContext';
 
 export default function Projects() {
+  const { isExpanded } = useProjects();
+  const [selectedProject, setSelectedProject] = useState<number | null>(null);
+
+  const toggleProject = (index: number) => {
+    setSelectedProject(selectedProject === index ? null : index);
+  };
+
   return (
-    <section id="projects" className="projects">
+    <section id="projects" className={`projects ${isExpanded ? 'expanded' : 'collapsed'}`}>
       <div className="container">
         <div className="section-title-container">
           <div className="section-title">
-            <span className="japanese">(三)</span>
+            <span className="japanese">十</span>
             <h2>Projects</h2>
           </div>
           <div className="section-title-line"></div>
         </div>
         
         <div className="projects-section">
-          {/* Display all projects */}
+          {/* Display all projects in a vertical list */}
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              className="project-card-wrapper"
+              className={`project-item ${selectedProject === index ? 'selected' : ''}`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              onClick={() => toggleProject(index)}
             >
-              <a 
-                href={project.link} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="project-card-new"
-                onClick={(e) => {
-                  if (!project.link) {
-                    e.preventDefault();
-                  }
-                }}
-              >
-                <KineticTypography textStyle="reveal">
-                  <h3>{project.title}</h3>
-                </KineticTypography>
+              <div className="project-year">{project.year}</div>
+              <div className="project-content">
+                <h3 className="project-title">{project.title}</h3>
+                <div className="project-number">/ P.{String(index + 1).padStart(2, '0')}</div>
                 
-                <KineticTypography textStyle="reveal" delay={0.1}>
-                  <div className="project-card-caption">
-                    {project.shortDescription || project.description.substring(0, 80) + '...'}
-                  </div>
-                </KineticTypography>
-                
-                <div className="project-tools">
-                  {project.tools.slice(0, 3).map((tool, toolIndex) => (
-                    <span key={toolIndex}>{tool}</span>
-                  ))}
-                  {project.tools.length > 3 && <span>+{project.tools.length - 3}</span>}
-                </div>
-              </a>
+                {/* Expanded project details */}
+                <AnimatePresence>
+                  {selectedProject === index && (
+                    <motion.div 
+                      className="project-details"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <p className="project-description">{project.description}</p>
+                      
+                      <div className="project-tools">
+                        {project.tools.map((tool, toolIndex) => (
+                          <span key={toolIndex}>{tool}</span>
+                        ))}
+                      </div>
+                      
+                      {project.link && (
+                        <a 
+                          href={project.link} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="project-link"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          View Project
+                        </a>
+                      )}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -64,7 +83,7 @@ export default function Projects() {
   );
 }
 
-// Updated project data - add tags property
+// Updated project data with years
 const projects = [
   {
     title: "NYC Vehicle Collisions Analysis",
@@ -72,7 +91,8 @@ const projects = [
     shortDescription: "Data analysis project with interactive visualizations of NYC vehicle collision patterns.",
     link: "https://github.com/gil10101/Vehicle-Collisions-Visualization",
     tools: ["Python", "Numpy", "Seaborn", "Folium", "Scipy", "Pandas", "Matplotlib", "Geopandas"],
-    tags: ["DATA ANALYSIS", "VISUALIZATION"]
+    tags: ["DATA ANALYSIS", "VISUALIZATION"],
+    year: "2024"
   },
   {
     title: "Personal Expense Tracker",
@@ -80,7 +100,8 @@ const projects = [
     shortDescription: "Finance tracking web app with analytics and budget planning.",
     link: "https://github.com/gil10101/sokin",
     tools: ["NextJS", "TailwindCSS", "Firebase", "React", "Typescript", "AWS"],
-    tags: ["WEB APP", "FINANCIAL TOOL"]
+    tags: ["WEB APP", "FINANCIAL TOOL"],
+    year: "2024"
   },
   {
     title: "Spotify School Playlist Generator",
@@ -88,7 +109,8 @@ const projects = [
     shortDescription: "Collaborative platform generating school-specific Spotify playlists.",
     link: "https://github.com/gil10101/SpotifySchools",
     tools: ["NodeJS", "Firebase", "Spotify API", "React", "TailwindCSS"],
-    tags: ["API INTEGRATION", "MUSIC"]
+    tags: ["API INTEGRATION", "MUSIC"],
+    year: "2023"
   },
   {
     title: "Let's Match",
@@ -96,7 +118,8 @@ const projects = [
     shortDescription: "Social platform connecting users with similar interests and goals.",
     link: "https://github.com/letsmatch4900/Project-Lets-Match",
     tools: ["NodeJS", "React", "Firebase", "CSS", "HTML"],
-    tags: ["SOCIAL NETWORK", "FRONTEND"]
+    tags: ["SOCIAL NETWORK", "FRONTEND"],
+    year: "2024"
   },
   {
     title: "Customer Churn Analysis and Prediction",
@@ -104,7 +127,8 @@ const projects = [
     shortDescription: "ML project predicting customer churn with predictive analytics.",
     link: "https://github.com/gil10101/Customer-Churn-Analysis-and-Prediction",
     tools: ["Python", "SQLite", "TensorFlow", "Pandas", "Matplotlib", "Seaborn", "Scikit-learn", "SciPy"],
-    tags: ["MACHINE LEARNING", "PREDICTION"]
+    tags: ["MACHINE LEARNING", "PREDICTION"],
+    year: "2023"
   },
   {
     title: "License Plate Recognition System",
@@ -112,7 +136,8 @@ const projects = [
     shortDescription: "CV application for license plate detection using deep learning.",
     link: "https://github.com/gil10101/License-Plate-Recognition-System",
     tools: ["Python", "TensorFlow", "Flask", "SSD", "Tessact OCR", "OpenCV"],
-    tags: ["COMPUTER VISION", "DEEP LEARNING"]
+    tags: ["COMPUTER VISION", "DEEP LEARNING"],
+    year: "2023"
   },
   {
     title: "ThreeJS Objects Repository",
@@ -120,7 +145,8 @@ const projects = [
     shortDescription: "3D object collection demonstrating WebGL capabilities.",
     link: "https://github.com/gil10101/Sphere",
     tools: ["JavaScript", "Three.js", "GSAP"],
-    tags: ["3D", "WEBGL"]
+    tags: ["3D", "WEBGL"],
+    year: "2022"
   },
   {
     title: "Fibonacci Spiral Generator",
@@ -128,6 +154,7 @@ const projects = [
     shortDescription: "Python application generating customizable Fibonacci spirals.",
     link: "https://github.com/gil10101/fibonacci",
     tools: ["Python", "NumPy", "Pillow", "SciPy", "Matplotlib", "Manim"],
-    tags: ["VISUALIZATION", "MATHEMATICS"]
+    tags: ["VISUALIZATION", "MATHEMATICS"],
+    year: "2022"
   }
 ]; 
