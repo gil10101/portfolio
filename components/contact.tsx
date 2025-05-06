@@ -51,8 +51,8 @@ export default function Contact() {
           <div className="section-title-line"></div>
         </div>
         
-        <div style={{ display: 'flex', gap: '2rem', marginBottom: '3rem' }}>
-          <div className="contact-info" style={{ flex: '1' }}>
+        <div className="contact-flex-container">
+          <div className="contact-info">
             <p>
               I'm always open to new opportunities and growing through new experiences. 
               Feel free to reach out if you'd like to connect, collaborate, or 
@@ -63,7 +63,7 @@ export default function Contact() {
             </p>
           </div>
           
-          <div className="social-links" style={{ display: 'flex', flexDirection: 'column', gap: '15px', justifyContent: 'center' }}>
+          <div className="social-links">
             <a href="https://linkedin.com/in/profile" target="_blank" rel="noopener noreferrer">
               LinkedIn
             </a>
@@ -88,7 +88,7 @@ export default function Contact() {
                 onChange={handleChange}
                 required
                 placeholder="Your name"
-                style={{ width: '100%', minWidth: '500px' }}
+                className="contact-input"
               />
             </div>
             
@@ -102,7 +102,7 @@ export default function Contact() {
                 onChange={handleChange}
                 required
                 placeholder="Your email address"
-                style={{ width: '100%', minWidth: '500px' }}
+                className="contact-input"
               />
             </div>
             
@@ -116,7 +116,7 @@ export default function Contact() {
                 onChange={handleChange}
                 required
                 placeholder="Your message"
-                style={{ width: '100%', minWidth: '500px' }}
+                className="contact-input"
               ></textarea>
             </div>
             

@@ -1,11 +1,31 @@
 "use client"
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
 export default function ScrollIndicator() {
   const { scrollYProgress } = useScroll()
   const scrollProgress = useTransform(scrollYProgress, [0, 1], [0, -1])
+  const [isMobile, setIsMobile] = useState(false)
+  
+  useEffect(() => {
+    // Check if device is mobile
+    const checkMobile = () => {
+      const mobile = window.innerWidth <= 768
+      setIsMobile(mobile)
+    }
+    
+    checkMobile()
+    
+    // Add event listener for window resize
+    window.addEventListener('resize', checkMobile)
+    
+    // Clean up event listener
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+  
+  // Don't render on mobile
+  if (isMobile) return null
   
   return (
     <motion.div 

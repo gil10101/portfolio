@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import * as THREE from "three"
 import { gsap } from "gsap"
+import Image from "next/image"
 
 // Define cube data type
 interface CubeData {
@@ -28,7 +29,8 @@ export default function FibonacciSphere() {
     
     const isMobileDevice = checkMobile()
     
-    if (!canvasRef.current) return
+    // If mobile, don't set up the 3D sphere
+    if (isMobileDevice || !canvasRef.current) return
 
     // Scene setup
     const scene = new THREE.Scene()
@@ -511,9 +513,21 @@ export default function FibonacciSphere() {
 
   return (
     <div className="canvas-container" ref={canvasRef}>
-      <div className="instructions">
-        <p>{isMobile ? "Tap" : "Click"} anywhere to create a ripple effect</p>
-      </div>
+      {isMobile ? (
+        <div className="mobile-hero-image">
+          <Image 
+            src="/hero.png" 
+            alt="Hero background" 
+            fill
+            priority
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
+          />
+        </div>
+      ) : (
+        <div className="instructions">
+          <p>{isMobile ? "Tap" : "Click"} anywhere to create a ripple effect</p>
+        </div>
+      )}
     </div>
   )
 }

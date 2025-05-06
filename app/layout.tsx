@@ -1,5 +1,5 @@
 import type React from "react"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import Layout from "@/components/Layout"
@@ -11,7 +11,13 @@ export const metadata: Metadata = {
   icons: {
     icon: "/logo.png",
   },
-  viewport: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
+}
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1.0,
+  maximumScale: 1.0,
+  userScalable: false,
 }
 
 export default function RootLayout({

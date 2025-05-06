@@ -6,6 +6,7 @@ import KineticTypography from "./KineticTypography"
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,6 +16,15 @@ export default function Header() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen)
+    // Toggle the 'open' class on nav element
+    const navElement = document.querySelector('.mobile-only-nav')
+    if (navElement) {
+      navElement.classList.toggle('open')
+    }
+  }
 
   return (
     <header className={`header ${scrolled ? 'scrolled' : ''}`}>
@@ -38,6 +48,26 @@ export default function Header() {
           DEVELOPER / DATA ANALYST
         </motion.div>
       </motion.div>
+
+      <div className="container">
+        {/* Navigation is hidden on desktop and tablets, visible only on mobile when menu is opened */}
+        <nav className="mobile-only-nav">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        
+        <div className="mobile-menu-icon" onClick={toggleMobileMenu}>
+          <div className={`hamburger ${mobileMenuOpen ? 'open' : ''}`}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
     </header>
   )
 }
