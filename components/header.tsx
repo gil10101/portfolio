@@ -18,7 +18,7 @@ export default function Header() {
   return (
     <header className={`header ${scrolled ? 'scrolled' : ''}`}>
       <div className="logo">
-        <span className={`greeting font-semibold text-lg ${scrolled ? 'text-gray-100' : 'text-gray-900'}`}>Hey, I'm John</span>
+        <span className={`greeting font-semibold text-lg ${scrolled ? 'text-gray-100' : 'text-gray-900'}`}>Hey, I'm Gil</span>
       </div>
       <div className="mobile-menu-icon" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
         <div className={`hamburger ${mobileMenuOpen ? 'open' : ''}`}>

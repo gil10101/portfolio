@@ -52,7 +52,7 @@ export default function Contact() {
               just want to say hello!
             </p>
             <p>
-              You can contact me directly at <strong>email@email.com</strong> or through this form.
+              You can contact me directly at <strong>gillu1212@gmail.com</strong> or through this form.
             </p>
             
             <div className="social-links" style={{ marginTop: "120px" }}>
@@ -66,7 +66,7 @@ export default function Contact() {
               }}>
                 LinkedIn
               </a>
-              <a href="mailto:email@email.com" className="social-link" style={{ 
+              <a href="mailto:gillu1212@gmail.com" className="social-link" style={{ 
                 display: "block", 
                 marginBottom: "32px", 
                 backgroundImage: "linear-gradient(90deg, #ffffff 0%, #e5e5e5 100%)",
@@ -74,7 +74,7 @@ export default function Contact() {
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text"
               }}>
-                email@email.com
+                gillu1212@gmail.com
               </a>
               <a href="https://github.com/gil10101" target="_blank" rel="noopener noreferrer" className="social-link" style={{ 
                 display: "block", 
