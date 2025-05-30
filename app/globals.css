@@ -320,6 +320,10 @@ a {
   width: 30px;
   height: 20px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 60;
 }
 
 .hamburger span {
@@ -327,7 +331,6 @@ a {
   position: absolute;
   height: 3px;
   width: 100%;
-  background: var(--accent-color);
   border-radius: 3px;
   opacity: 1;
   left: 0;
@@ -1392,29 +1395,29 @@ img {
   /* Create mobile menu for navigation */
   .mobile-menu-icon {
     display: block;
+    cursor: pointer;
   }
   
   nav {
     position: fixed;
     top: var(--header-height);
-    right: -100%;
+    left: 0;
     width: 100%;
     height: calc(100vh - var(--header-height));
-    background-color: rgba(230, 230, 216, 0.95);
-    backdrop-filter: blur(10px);
-    transition: right 0.3s ease;
-    z-index: 100;
+    flex-direction: column;
+    background-color: var(--bg-color);
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+    z-index: 50;
   }
   
   nav.open {
-    right: 0;
+    transform: translateY(0);
   }
   
   nav ul {
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100%;
     padding: 2rem 0;
   }
   
