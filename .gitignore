@@ -29,3 +29,6 @@ package-lock.json
 # UI components
 components/ui
 
+# components
+components/*
+!components/UnderConstructionHero.tsx
